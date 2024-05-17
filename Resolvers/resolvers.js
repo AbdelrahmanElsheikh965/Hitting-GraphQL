@@ -3,20 +3,6 @@
 const { registerUserResolver, loginResolver } = require("./user-auth-resolvers");
 const User = require("../Models/User");
 
-/*
-  No need now for db.json restApi on port 3000 -> But a real MongoDB server.
-  
-  const axios = require('axios').default;
-  const restApi = axios.create({
-    baseURL: "http://localhost:3000/",
-    timeout: 10000,
-    headers: {
-      "X-Token": "token",
-    }
-  });
-
-*/
-
 const resolvers = {
 
   /** [Child Resolver] that depends on [Query Resolver] */

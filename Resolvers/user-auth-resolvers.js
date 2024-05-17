@@ -15,8 +15,6 @@ const loginResolver = async (parent, args) => {
   const isPasswordMatch = await bcrypt.compare(password, user.password);
   if (!isPasswordMatch) throw new Error("Invalid Credentials");
   
-  console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`);
-
   const userToken = jwt.sign(
     { email: user.email },
     process.env.JWT_SECRET,
