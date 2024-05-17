@@ -19,10 +19,13 @@ const User = require("../Models/User");
 
 const resolvers = {
 
+  /** [Child Resolver] that depends on [Query Resolver] */
+
   User: {
     posts: async (parent, args) => {
-      const userPosts = await User.find({ _id: parent.id }, 'posts').limit(args.last);
-      return {userPosts};
+      // updated typeDefs.js => removed ! so title could be null.
+      const userPosts = parent.posts || []; 
+      return userPosts;
     }
   },
 
@@ -33,7 +36,6 @@ const resolvers = {
 
   Query: {
 
-
     profile: () => {
       return { name: "ahmed", email: "test@mail.com" }
     },
@@ -41,22 +43,17 @@ const resolvers = {
 
     getUsers: async (parent, args, context) => {
       const { pagination: { page, count } } = args;
-
       if(!context.loggedUser?.email) {
         throw new Error("UNAUTHORIZED");
       }
-
       const users = await User.find({}).skip(page).limit(count);
       return users;
-      
     },
 
 
     getUserByID: async (parent, args) => {
       const { userId } = args;
-      
       const user = await User.findById(userId);
-
       return user;
     }
 

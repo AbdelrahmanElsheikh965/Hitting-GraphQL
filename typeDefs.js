@@ -13,7 +13,7 @@ type User {
 
 type Post {
   id: ID!
-  title: String!
+  title: String 
   body: String!
 }
 
@@ -39,7 +39,7 @@ type Query {
   profile: User
   getPosts (pagination: PaginationInput!): [Post]
   getUsers (pagination: PaginationInput!): [User!]!
-  getUserByID (userId: Int!): User!
+  getUserByID (userId: ID!): User!
 }
 
 type RegisterationResponse {
