@@ -4,11 +4,11 @@ const userSchema = new mongoose.Schema(
   {
     // Id is automatically added by MongoDB server.
     isActive: {
-      required: true,
+      required: false,
       type: Boolean,
     },
     age: {
-      required: true,
+      required: false,
       type: Number,
     },
     name: {
@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema(
     email: {
       required: false,
       unique: true,
+      type: String,
+    },
+    password: {
+      required: true,
       type: String,
     },
     role: {

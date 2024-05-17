@@ -1,2 +1,0 @@
-Change the data-source to be a database (use any database) instead of rest API used.
- 

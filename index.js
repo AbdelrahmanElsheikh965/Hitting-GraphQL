@@ -1,5 +1,4 @@
 const { ApolloServer } = require("apollo-server");
-const jwt = require('jsonwebtoken');
 const { typeDefs } = require("./typeDefs");
 const { resolvers } = require("./Resolvers/resolvers");
 
@@ -18,18 +17,17 @@ const restApi = axios.create({
 });
 
 const app = new ApolloServer({
-  context: async (ctx) => {
-    let loggedUser = null;
-    const token = ctx.req.headers["authorization"];
-    try {
-      const payload = jwt.verify(token, process.env.JWT_SECRET);
-      loggedUser = payload;
-    } catch (error) {
-      console.error(error);
-    }
-
-    return { loggedUser };
-  },
+  // context: async (ctx) => {
+  //   let loggedUser = null;
+  //   const token = ctx.req.headers["authorization"];
+  //   try {
+  //     const payload = jwt.verify(token, process.env.JWT_SECRET);
+  //     loggedUser = payload;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   return { loggedUser };
+  // },
   typeDefs,
   resolvers,
 });
